@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './usuario'
-import { UsuarioService } from './usuario.service';
+import { LoginService } from './login.service';
 import Swal from 'sweetalert2';
+import { UtilitarioService } from '../../servicio/utilitario.service';
+import { SesionService } from '../../servicio/sesion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,29 +17,44 @@ export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario();
 
   constructor(
-    private usuarioServicio: UsuarioService
+    private loginService: LoginService,
+    private utilitarioService: UtilitarioService,
+    private sesionService: SesionService,
+    private router: Router
   ) { }
-
   ngOnInit(): void {
   }
-  login(): void
-  {
-    if(this.usr === undefined || this.pass === undefined){
+  /**
+   * Metodo que se encarga de autenticar 
+   */
+  login(): void {
+    if (this.usr === undefined || this.pass === undefined) {
       Swal.fire(
         'Error',
         `Especifique un usuario y una contraseña`,
         'error'
       );
-    }else{
-    this.usuarioServicio.obtenerUsuario(this.usr, this.pass)
-    .subscribe(resp=>
-    {
-      //console.log(resp);
-      
-      this.usuario = resp;//[0];
-      console.log(this.usuario.login);
+    } else {
+      this.loginService.obtenerUsuario(this.usr, this.utilitarioService.getDatoEncriptadoEnMD5(this.pass).toString())
+        .subscribe(resp => {
+          if (resp.login === undefined) {
+            Swal.fire('ERROR', `Usuario o contraseña incorrectos.`, 'error');
+          } else {
+            this.usuario = resp;
+            this.sesionService.setUsuarioId(this.usuario.id_usuario.toString());
+           /*  if (this.usuario.persona_empresa_id === undefined) {
+              console.log('Usuario Administrador');
+            } else {
+              this.sesionService.setPersonaEmpresaId(this.usuario.persona_empresa_id.toString());
+            } */
+            this.router.navigate(['./inicio']);
+          }
+        },
+          err => {
+            Swal.fire('ERROR', `Usuario o contraseña incorrectos.`, 'error');
+          }
+        );
     }
-    ) ;
   }
-  }
+
 }

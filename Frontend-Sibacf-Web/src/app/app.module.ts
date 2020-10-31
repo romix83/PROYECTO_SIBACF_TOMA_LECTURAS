@@ -10,7 +10,8 @@ import { InicioComponent } from './principal/inicio/inicio.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'inicio', component: InicioComponent }
 ];
 
 @NgModule({
