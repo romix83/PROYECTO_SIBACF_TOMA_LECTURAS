@@ -1,0 +1,94 @@
+<div class="fixed-top">
+    <header class="topbar">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- social icon-->
+          <div class="col-sm-12">
+            <ul class="social-network">
+              <li>
+                <a
+                  class="waves-effect waves-dark"
+                  href="https://es-la.facebook.com/MinTrabajoEcuador/"
+                  target="_blank"
+                  ><i class="icon-facebook-sign"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="waves-effect waves-dark"
+                  href="https://twitter.com/MinTrabajoEc"
+                  target="_blank"
+                  ><i class="icon-twitter-sign"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="waves-effect waves-dark"
+                  href="https://www.youtube.com/user/rellaboralesec"
+                  target="_blank"
+                  ><i class="icon-youtube"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="waves-effect waves-dark"
+                  href="https://www.flickr.com/photos/relacioneslaboralesecuador/"
+                  target="_blank"
+                  ><i class="icon-flickr"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+      <div class="container">
+        <!-- <button type="button" id="sidebarCollapse" class="btn btn-info">
+          <i class="fas fa-align-justify"></i>
+          <span></span>
+        </button> -->
+        <a
+          id="nombreEmpresa"
+          class="navbar-brand"
+          rel="nofollow"
+          target="_blank"
+          
+          style="text-transform: uppercase;"
+        >
+          {{ empresa }}</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+           <!--  <li class="nav-item active" *ngIf="!isLogged">
+              <a class="nav-link" routerLink="/login">
+                Ingresar
+                <span class="sr-only">(current)</span>
+              </a>
+            </li> -->
+            <li class="nav-item active" *ngIf="isLogged" (click)="logout()">
+              <a
+                class="nav-link"
+                [routerLink]="['/login']"
+                routerLinkActive="router-link-active"
+                ><i class="fas fa-door-open"></i>Cerrar Sesion</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+</div>
+  
