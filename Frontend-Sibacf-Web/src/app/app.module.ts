@@ -7,6 +7,7 @@ import { PrincipalComponent } from './principal/principal/principal.component';
 import { LoginComponent } from './principal/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InicioComponent } from './principal/inicio/inicio.component';
+import { RolComponent } from './seguridades/rol/rol.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
@@ -19,7 +20,8 @@ const routes: Routes = [
     AppComponent,
     PrincipalComponent,
     LoginComponent,
-    InicioComponent
+    InicioComponent,
+    RolComponent
   ],
   imports: [
     BrowserModule,
